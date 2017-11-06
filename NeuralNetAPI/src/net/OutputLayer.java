@@ -3,8 +3,8 @@ package net;
 import testing.Main;
 
 public class OutputLayer extends Layer {
-
-	int finalVal = -1;
+	double error;
+	double finalVal = -1;
 	public OutputLayer(int inpSize) {
 		super(inpSize, 1);
 	}
@@ -12,36 +12,38 @@ public class OutputLayer extends Layer {
 	@Override
 	public void feedForward(double[][] inp) {
 		input = inp;
+
 		double[][] yhat = sigmoid(inp);	
 		out = yhat;
-		if(yhat[0][0] > 0.5) {
-			finalVal = 1;
-		}else {
-			finalVal = 0;
-		}
-		//printMatrix(out);
+		finalVal = out[0][0];
+		//
 	}
 
-	public int getFinalVal() {
+	public double getFinalVal() {
 		return finalVal;
 	}
 
 
 	public void backPropagate(double[][] target, Layer lp) {
 		layerPrev = lp;
+
 		double[][] error = minus(out,target);
+		input = scale(error,1.0/input.length);
+		this.error = error[0][0];
 		delta = multByElement(error, sigmoidD(input));
 
 		double[][] djdw = mult(transpose(lp.getActiveOutput()), delta);	
 		lp.setBias(minus(lp.getBias(), scale(delta,Main.ETA)));
-		
+		//printMatrix(error);
 		
 		// do all of these at end!!!!!!
 		synapseToSet = minus(lp.getSynapse(),scale(djdw,Main.ETA));
 	}
 	
 
-
+	public double getError() {
+		return error;
+	}
 	public double[][] add(double[][] a, double[][] b){
 		double[][] out = new double[a.length][a[0].length];
 

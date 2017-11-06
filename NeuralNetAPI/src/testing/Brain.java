@@ -1,7 +1,16 @@
-package net;
+package testing;
 
 import java.util.Arrays;
 
+import net.Point;
+
+
+/**
+ * Not an important class - has been swapped for the more dynamic Network class
+ * only used for testing really
+ * @author Matthew
+ *
+ */
 public class Brain {
 
 	double bias1 = 1;	
@@ -17,7 +26,7 @@ public class Brain {
 
 	public double guess(Point p) {
 
-		double[][] x = {{p.x/400.0,p.y/400.0}};	
+		double[][] x = {{p.getX()/400.0,p.getY()/400.0}};	
 
 		double[][] z2 = addBias(mult(x,synapse1));
 
@@ -37,9 +46,9 @@ public class Brain {
 
 	public void train(Point p, double rate) {
 		//Initial values from forward propogation
-		double[][] target = {{p.value}};
+		double[][] target = {{p.getValue()}};
 
-		double[][] input = {{((double)(p.x))/400.0,((double)(p.y))/400.0}};
+		double[][] input = {{((double)(p.getX()))/400.0,((double)(p.getY()))/400.0}};
 
 		double[][] inputtimesweights = addBias(mult(input,synapse1));
 
