@@ -16,7 +16,4 @@ public class InputLayer extends Layer {
 		out = addBias(mult(input,synapse));
 
 	}
-
-
-
 }

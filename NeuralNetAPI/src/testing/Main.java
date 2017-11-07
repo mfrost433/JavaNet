@@ -21,7 +21,7 @@ import net.Network;
 import net.Point;
 
 public class Main extends JFrame {
-
+/*
 	/**
 	 * 
 	 */
@@ -38,9 +38,10 @@ public class Main extends JFrame {
 	int[] networkNodes = {5,20,20,1};
 	Network n = new Network(networkNodes);
 	List<Point> plist = new ArrayList<Point>();
+	/*
 	public static void main(String[] args) {
 		Main m = new Main();
-		/*
+
 		URL u;
 
 		try {
@@ -59,12 +60,6 @@ public class Main extends JFrame {
 		}
 		 */
 
-
-
-		double[][] inps = new double[6][400];
-		double[][] inp2=new double[2][400];
-		ImageProcessor img = new ImageProcessor();
-		int[] networkNodes = {2,3,1};
 		/*
 		for(int i = 1; i <= 6; i ++) {
 			inps[i-1] = img.imageToArray(new File("D:\\Neural Net\\Neural-net-deep-learning-API\\Neural Net Images\\2-"+ i +".png"))[0];
@@ -98,8 +93,7 @@ public class Main extends JFrame {
 			count++;
 
 		}
-		 */
-		/*
+
 		for(int i = 0 ; i < 100; i++) {
 
 			for(int j = 1; j <= 6; j++) {
@@ -117,7 +111,6 @@ public class Main extends JFrame {
 			System.out.println("|||||||||||||||||||");
 		}
 
-		 */
 	}
 
 	public Main() {
@@ -130,7 +123,7 @@ public class Main extends JFrame {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.clearRect(0, 0, 400, 400);
 		g2.drawLine(0, 0, 400, 400);
-/*
+
 		for(Point p : newList2()) {
 
 			double[][] inp = {{}};
@@ -151,7 +144,7 @@ public class Main extends JFrame {
 			}
 
 		}
-		*/
+
 		test();
 		//double[][] inps = new double[arrSize][2];
 		
@@ -168,7 +161,7 @@ public class Main extends JFrame {
 				//System.out.println(Math.abs((int)(n.guess(inps)*1000) - primes[x] ) < 2);
 				test();
 				
-				/*
+	
 				for(Point p : newList2()) {
 					
 					double[][] inps2 = {{((double)(p.getX()))/400,((double)(p.getY()))/400}};
@@ -187,10 +180,9 @@ public class Main extends JFrame {
 
 
 				}
-				*/
-			}
+		}
 
-			/*
+
 			for(int j = 0; j < 100; j ++) {
 				g2.clearRect(0, 0, 400, 400);
 				for(Point p : newList2()) {
@@ -214,7 +206,7 @@ public class Main extends JFrame {
 
 				}
 			}
-			*/
+
 		}
 	}
 	double correct = 1;
@@ -246,5 +238,5 @@ public class Main extends JFrame {
 		}
 		//System.out.println(correct + " out of 100");
 	}
-
+*/
 }

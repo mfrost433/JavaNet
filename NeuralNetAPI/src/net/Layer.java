@@ -49,17 +49,18 @@ public class Layer {
 	/* 
 	 * Back propogation assumes that the network has already been fed forward to the output.
 	 * It retrieves the delta from the layer in front, uses it for the back propagation equation.
-	 * 
+	 * Sets the dJdW for the PREVIOUS layer.
 	 */
 	public void backPropagate(Layer lp, Layer lf) {
+		double [][] error1;
+		double[][] djdw;
+		
 		layerPrev = lp;
-
-		double [][] error1 = mult(lf.getDelta(),transpose(synapse));
-
+		
+		error1 = mult(lf.getDelta(),transpose(synapse));
 		delta = multByElement(error1,sigmoidD(input));
-
-		double[][] djdw = mult(transpose(lp.getInput()), delta);
-
+		djdw = mult(transpose(lp.getInput()), delta);
+		
 		synapseToSet = minus(lp.getSynapse(),scale(djdw,Main.ETA));
 		lp.setBias(minus(lp.getBias(), scale(delta,Main.ETA)));
 	}
