@@ -9,14 +9,8 @@ public class InputLayer extends Layer {
 
 	@Override
 	public void feedForward(double[][] inp) {
-
-		input = inp;		
-
+		input = inp;
 		a = inp;
 		out = addBias(mult(input,synapse));
-
 	}
-
-
-
 }

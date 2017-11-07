@@ -1,28 +1,17 @@
 package testing;
 
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.Line2D;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JFrame;
 
 import data.DataRequester;
-import image.ImageProcessor;
 import net.Network;
 import net.Point;
 
 public class Main extends JFrame {
-
+	/*
 	/**
 	 * 
 	 */
@@ -30,29 +19,37 @@ public class Main extends JFrame {
 	Graphics _g;
 	int iterations = 0;
 	Brain b = new Brain();	
-	
+
 	int[] primes = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 
-		59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 
-		139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199};
+			59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 
+			139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199};
 
 	public static final double ETA = 0.3;	
 	int[] networkNodes = {5,20,20,1};
 	Network n = new Network(networkNodes);
 	List<Point> plist = new ArrayList<Point>();
-	
+
+
 	public static void main(String[] args) {
-		
-		
+
+
 		DataRequester requester = new DataRequester();
-		
+
 		try {
-			requester.sendGet();
+			//requester.sendGet();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
+
+
 		//Main m = new Main();
 		/*
+
+	/*
+	public static void main(String[] args) {
+		Main m = new Main();
+
 		URL u;
 
 		try {
@@ -69,16 +66,22 @@ public class Main extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 
 
 
-		
+
+
+
 		double[][] inps = new double[6][400];
 		double[][] inp2=new double[2][400];
 		ImageProcessor img = new ImageProcessor();
 		int[] networkNodes = {2,3,1};
-		
-		
+
+
+
+		 */
+
+		/*
+
 		for(int i = 1; i <= 6; i ++) {
 			inps[i-1] = img.imageToArray(new File("D:\\Neural Net\\Neural-net-deep-learning-API\\Neural Net Images\\2-"+ i +".png"))[0];
 		}
@@ -111,8 +114,7 @@ public class Main extends JFrame {
 			count++;
 
 		}
-		 */
-		/*
+
 		for(int i = 0 ; i < 100; i++) {
 
 			for(int j = 1; j <= 6; j++) {
@@ -130,7 +132,6 @@ public class Main extends JFrame {
 			System.out.println("|||||||||||||||||||");
 		}
 
-		 */
 	}
 
 	public Main() {
@@ -143,7 +144,7 @@ public class Main extends JFrame {
 		Graphics2D g2 = (Graphics2D) g;
 		g2.clearRect(0, 0, 400, 400);
 		g2.drawLine(0, 0, 400, 400);
-/*
+
 		for(Point p : newList2()) {
 
 			double[][] inp = {{}};
@@ -164,26 +165,26 @@ public class Main extends JFrame {
 			}
 
 		}
-		*/
+
 		test();
 		//double[][] inps = new double[arrSize][2];
-		
+
 		//int i = 0;
 		while(true) {
 			for(int x = 5; x < primes.length; x++) {
 				double[][] inps = {{((double)(primes[x-1]))/1000,((double)(primes[x-2]))/1000,((double)(primes[x-3]))/1000,((double)(primes[x-4]))/1000,((double)(primes[x-5]))/1000}};
 				double[][] targs = {{((double)(primes[x]))/1000}};
-				
+
 				//System.out.println(targs[0][0]);
-				
+
 				n.train(inps, targs);
 				//System.out.println(Math.abs((int)(n.guess(inps)*1000)) + " vs " + primes[x]);
 				//System.out.println(Math.abs((int)(n.guess(inps)*1000) - primes[x] ) < 2);
 				test();
-				
-				/*
+
+
 				for(Point p : newList2()) {
-					
+
 					double[][] inps2 = {{((double)(p.getX()))/400,((double)(p.getY()))/400}};
 					double[][] targ2 = {{p.getValue()}};
 					//n.train(inps2, targ2);
@@ -200,10 +201,9 @@ public class Main extends JFrame {
 
 
 				}
-				*/
-			}
+		}
 
-			/*
+
 			for(int j = 0; j < 100; j ++) {
 				g2.clearRect(0, 0, 400, 400);
 				for(Point p : newList2()) {
@@ -227,7 +227,7 @@ public class Main extends JFrame {
 
 				}
 			}
-			*/
+
 		}
 	}
 	double correct = 1;
@@ -259,5 +259,6 @@ public class Main extends JFrame {
 		}
 		//System.out.println(correct + " out of 100");
 	}
-
+		 */
+	}
 }

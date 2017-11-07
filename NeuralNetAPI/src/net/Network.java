@@ -1,5 +1,7 @@
 package net;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,12 +13,11 @@ import java.util.List;
  * @author Matthew
  *
  */
-public class Network {	
+public class Network {
 
 	private List<Layer> layers = new ArrayList<Layer>();
 
 	public Network(int[] neuronsPerLayer) {
-		
 		//uses the size of the input array to calculate the number of hidden, input and output layers
 		int numHiddenLayers = neuronsPerLayer.length - 2;
 		//adds inital input layer
