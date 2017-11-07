@@ -16,6 +16,7 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
+import data.DataRequester;
 import image.ImageProcessor;
 import net.Network;
 import net.Point;
@@ -38,8 +39,19 @@ public class Main extends JFrame {
 	int[] networkNodes = {5,20,20,1};
 	Network n = new Network(networkNodes);
 	List<Point> plist = new ArrayList<Point>();
+	
 	public static void main(String[] args) {
-		Main m = new Main();
+		
+		
+		DataRequester requester = new DataRequester();
+		
+		try {
+			requester.sendGet();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		//Main m = new Main();
 		/*
 		URL u;
 
@@ -57,15 +69,16 @@ public class Main extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 */
+		 
 
 
-
+		
 		double[][] inps = new double[6][400];
 		double[][] inp2=new double[2][400];
 		ImageProcessor img = new ImageProcessor();
 		int[] networkNodes = {2,3,1};
-		/*
+		
+		
 		for(int i = 1; i <= 6; i ++) {
 			inps[i-1] = img.imageToArray(new File("D:\\Neural Net\\Neural-net-deep-learning-API\\Neural Net Images\\2-"+ i +".png"))[0];
 		}
