@@ -39,6 +39,10 @@ public class Request {
 		return title;
 	}
 	
+	public String getKey() {
+		return _key;
+	}
+	
 
 
 }

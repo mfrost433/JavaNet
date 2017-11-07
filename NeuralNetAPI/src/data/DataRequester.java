@@ -10,26 +10,43 @@ import java.net.URL;
 
 public class DataRequester {
 	
+	private static DataRequester _requester = null;
 	
-	private final String USER_KEY = "H1TEXOMHFVBPSCII";
-	private final String FUNCTION = "TIME_SERIES_DAILY";
-	private final String SYMBOL = "GOOG";
-	private final String OUTPUT_SIZE = "full";
-	
-	
-	
+	private DataRequester() {
+
+	}
+
+	public static DataRequester getInstance() {
+		
+		if( _requester == null) {
+			_requester = new DataRequester();
+		}
+		return _requester;
+		
+	}
 
 	// HTTP GET request
 	public void sendGetRequest(Request request) throws Exception {
 
+		File f = new File("F:\\Other Shortcuts\\ML\\NeuralNetAPI\\rsc\\rawdata\\" + request.toTitle() +".txt");
+		System.out.println(f.toString());
+		
+		if( !f.exists() ) {
+		f.createNewFile();
+		}else {
+			System.out.println("File already exists - Overwriting");
+			f.delete();
+			f.createNewFile();
+		}
+			
 		URL obj = request.toURL();
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
-		// optional default is GET
+		// default is GET
 		con.setRequestMethod("GET");
 
 		//add request header
-		con.setRequestProperty("User-Agent", USER_KEY);
+		con.setRequestProperty("User-Agent", request.getKey());
 
 		int responseCode = con.getResponseCode();
 		System.out.println("\nSending 'GET' request to URL : " + obj.toString());
@@ -47,10 +64,13 @@ public class DataRequester {
 		//print result
 		System.out.println(response.toString());
 		
-		File f = new File(request.toTitle());
+		//Write to file
+		
 		PrintWriter writer = new PrintWriter(f);
 		writer.print(response.toString());
 
+		
+		
 	}
 
 }

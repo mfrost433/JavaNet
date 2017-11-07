@@ -7,13 +7,14 @@ import java.util.List;
 import javax.swing.JFrame;
 
 import data.DataRequester;
+import data.Request;
 import net.Network;
 import net.Point;
 
 public class Main extends JFrame {
+	
 	/*
-	/**
-	 * 
+	 * please fix this matt 
 	 */
 	private static final long serialVersionUID = 1L;
 	Graphics _g;
@@ -33,10 +34,11 @@ public class Main extends JFrame {
 	public static void main(String[] args) {
 
 
-		DataRequester requester = new DataRequester();
+		DataRequester requester = DataRequester.getInstance();
+		Request request = new Request("GOOG");
 
 		try {
-			//requester.sendGet();
+			requester.sendGetRequest(request);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
