@@ -1,7 +1,5 @@
 package data;
 
-import org.jfree.data.xy.XYSeries;
-
 /**
  * This class makes calls to  APIs to retrieve time series data on stock prices.
  * Uses singleton method.

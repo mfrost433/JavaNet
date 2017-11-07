@@ -19,6 +19,7 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 
+import data.XYSeriesAdapter;
 import net.Network;
 
 public class StockTester {
@@ -56,6 +57,8 @@ public class StockTester {
 	}
 	
 	public static void main(String[] args) {
+		
+		XYSeriesAdapter.readFromFile("MSFT");
 		new StockTester();
 	}
 	
