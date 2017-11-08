@@ -28,7 +28,7 @@ public class DataRequester {
 	// HTTP GET request
 	public void sendGetRequest(Request request) throws Exception {
 
-		File f = new File("F:\\Other Shortcuts\\ML\\NeuralNetAPI\\rsc\\rawdata\\" + request.toTitle() +".txt");
+		File f = new File("..\\NeuralNetAPI\\rsc\\rawdata\\" + request.toTitle() +".txt");
 		System.out.println(f.toString());
 		
 		if( !f.exists() ) {
@@ -54,23 +54,23 @@ public class DataRequester {
 
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
-		StringBuffer response = new StringBuffer();
+		String response = "";
 
+		// Printing text to file
+		int i = 0;
+		PrintWriter writer = new PrintWriter(f);
 		while ((inputLine = in.readLine()) != null) {
-			response.append(inputLine);
+			System.out.println(inputLine);
+			writer.print(inputLine);
+			writer.flush();
+			// Flushing to avoid buffer memory issues
+
 		}
+
+		
 		in.close();
 
-		//print result
-		System.out.println(response.toString());
-		
-		//Write to file
-		
-		PrintWriter writer = new PrintWriter(f);
-		writer.print(response.toString());
-
-		
-		
+	
 	}
 
 }
