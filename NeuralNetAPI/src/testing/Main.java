@@ -34,7 +34,7 @@ public class Main extends JFrame {
 		59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 
 		139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199};
 
-	public static final double ETA = 0.3;	
+	public static final double ETA = 0.1;	
 	int[] networkNodes = {5,20,20,1};
 	Network n = new Network(networkNodes);
 	List<Point> plist = new ArrayList<Point>();

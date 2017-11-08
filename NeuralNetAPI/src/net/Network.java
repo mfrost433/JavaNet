@@ -54,7 +54,7 @@ public class Network {
 		}
 		//gets last layer as an output layer object to retrieve final value.
 		OutputLayer out = (OutputLayer) temp;
-		return out.getFinalVal();
+		return (out.getOutput()[0][0]*100);
 
 	}
 
