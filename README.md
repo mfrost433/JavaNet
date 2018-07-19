@@ -1,4 +1,4 @@
-# Neural-net-deep-learning-API
+# JavaNet
 
 This small API provides functionality for producing a basic neural network.
 Backpropogation is implemented via Gradient Descent algorithm, and only the sigmoid
