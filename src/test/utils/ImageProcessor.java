@@ -1,4 +1,4 @@
-package image;
+package test.utils;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
@@ -6,11 +6,19 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-
+/**
+ * this class is used to convert an input image into an array for training on with a neural network.
+ * @author matt frost
+ *
+ */
 public class ImageProcessor {
-	public ImageProcessor() {
-
-	}
+	public ImageProcessor() {}
+	
+	/**
+	 * main call - converts to an array
+	 * @param f
+	 * @return
+	 */
 	public double[][] imageToArray(File f){
 		double[][] out = null;
 		try {
@@ -24,7 +32,12 @@ public class ImageProcessor {
 		return out;
 
 	}
-
+	
+	/**
+	 * gets rgb of each pixel and stores in 2d lattice
+	 * @param image
+	 * @return
+	 */
 	private double[][] convertTo2DUsingGetRGB(BufferedImage image) {
 		Raster r = image.getRaster();
 		int width = image.getWidth();

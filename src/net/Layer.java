@@ -1,8 +1,5 @@
 package net;
 
-import testing.Main;
-
-
 /**
  * The layer class encapsulates the inputs and outputs to each layer of
  * the neural network. Performs the feed forward and back propagation mathematics
@@ -17,11 +14,30 @@ public class Layer {
 	 * with batch training and online training, and to make more dynamic
 	 *  - cannot be sure of input sizes/ number of inputs
 	 */
-	double[][] synapseToSet, synapse,  bias, input, out,  z, a, delta;
+	protected double[][] synapseToSet, synapse,  bias;
 
-	Layer layerPrev;
+	protected double[][] input;
 
-	public Layer(int numNeurons, int numOut) {
+	protected double[][] out;
+
+	protected double[][] z;
+
+	protected double[][] a;
+
+	protected double[][] delta;
+
+	protected Layer layerPrev;
+	private int eta;
+	
+	/**
+	 * used to create a neural network layer.
+	 * @param numNeurons
+	 * @param numOut
+	 * @param eta
+	 */
+	public Layer(int numNeurons, int numOut, int eta) {
+		this.eta = eta;
+		
 		bias = new double[1][numOut];
 		synapse = new double[numNeurons][numOut];
 		
@@ -37,8 +53,14 @@ public class Layer {
 		}
 	}
 
-	/* feeds forward from the inactive input- activates it with Sigmoid function,
+	protected int getEta(){
+		return eta;
+	}
+
+	/**
+	 *  feeds forward from the inactive input- activates it with Sigmoid function,
 	 * then multiplies by weights to get output.
+	 * @param inp
 	 */
 	public void feedForward(double[][] inp) {
 		input = inp;
@@ -46,10 +68,12 @@ public class Layer {
 		out = addBias(mult(a,synapse));
 	}
 	
-	/* 
+	/**
 	 * Back propogation assumes that the network has already been fed forward to the output.
 	 * It retrieves the delta from the layer in front, uses it for the back propagation equation.
 	 * Sets the dJdW for the PREVIOUS layer.
+	 * @param lp
+	 * @param lf
 	 */
 	public void backPropagate(Layer lp, Layer lf) {
 		double [][] error1;
@@ -61,17 +85,15 @@ public class Layer {
 		delta = multByElement(error1,sigmoidD(input));
 		djdw = mult(transpose(lp.getInput()), delta);
 		
-		synapseToSet = minus(lp.getSynapse(),scale(djdw,Main.ETA));
-		lp.setBias(minus(lp.getBias(), scale(delta,Main.ETA)));
+		synapseToSet = minus(lp.getSynapse(),scale(djdw,getEta()));
+		lp.setBias(minus(lp.getBias(), scale(delta,getEta())));
 	}
 
 	
-	/*
+	/**
 	 * These functions are utilities for matrix operations and retrieving values that other layers need.
-	 * Should probably move the matrix stuff into its own classes
-	 * 
+	 * TODO make these static utils
 	 */
-
 	public void setSynapse() {
 		layerPrev.setSynapse(synapseToSet);
 	}
@@ -113,7 +135,12 @@ public class Layer {
 		System.out.println(x.length + " r " + x[0].length + " c ");
 
 	}
-
+	
+	/**
+	 * non-linear activation differentiated
+	 * @param a
+	 * @return
+	 */
 	public double[][] sigmoidD(double[][] a){
 
 		double[][] out = new double[a.length][a[0].length];
@@ -198,7 +225,12 @@ public class Layer {
 		return out;
 
 	}
-
+	
+	/**
+	 * non linear activation for neural network
+	 * @param a
+	 * @return
+	 */
 	public double[][] sigmoid(double[][] a){
 
 		double[][] out = new double[a.length][a[0].length];
